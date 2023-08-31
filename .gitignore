@@ -2,3 +2,6 @@
 build-GUI-msys2_mingw64_GCC-Profile/*
 build-GUI-msys2_mingw64_GCC-Release/*
 obj/*
+build-GUI-GUI-Debug/*
+build-GUI-GUI-Profile/*
+build-GUI-GUI-Release/*

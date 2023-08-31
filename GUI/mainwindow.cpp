@@ -1992,3 +1992,8399 @@ void MainWindow::on_pushButton_orwise_clicked()
     }
     }
 }
+
+void MainWindow::on_pushButton_resta_clicked()
+{
+    using NumRepr::ldouble_t;
+    using NumRepr::sllint_t;
+    using NumRepr::ullint_t;
+
+    /// R = A + B ;
+    /// A -> objeto[0] // NO HAY QUE ACTUALIZARLO
+    /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+    /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+    // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+    // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+    // REALIZAMOS LA OPERACION
+    // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+    // EL CAST SOLO CUANDO ES NECESARIO
+    // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+    //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+
+    /// ll_lista es una lista de variables de tipo long long int
+    /// ull_lista es una lista de variables de tipo unsigned long long int
+    /// ld_lista es una lista de variables de tipo long double
+    /// digito_lista es una lista de variable de tipo dig_variant
+
+    const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const tipo_o_plantilla_de_tipo_e tipo_de_left{objeto[0].tipo};
+    const tipo_o_plantilla_de_tipo_e tipo_de_right{objeto[1].tipo};
+    switch (tipo_de_left) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] - ll_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] - ull_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre]
+                                         - static_cast<sllint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ull_lista[objeto[2].nombre] = static_cast<ullint_t>(ull_lista[objeto[0].nombre]
+                                                                - ll_lista[objeto[1].nombre]);
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre] - ull_lista[objeto[1].nombre];
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre]
+                                          - static_cast<ullint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]
+                                         - static_cast<ldouble_t>(ll_lista[objeto[1].nombre]);
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]
+                                         - static_cast<ldouble_t>(ull_lista[objeto[1].nombre]);
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre] - ld_lista[objeto[1].nombre];
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const bool copia_posible = ((tipo_de_right == tipo_de_left)
+                                    && (objeto[0].base == objeto[1].base));
+        if (copia_posible) {
+            objeto[2].base = objeto[1].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre]
+                                             - digito_lista[objeto[1].nombre]; /// R <- A + B
+            objeto[2].valor = digito_lista[objeto[2].nombre];
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+    }
+    }
+
+    // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+    ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+    ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+        ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(false);
+        break;
+    }
+}
+
+
+void MainWindow::on_pushButton_producto_clicked()
+{
+    using NumRepr::ldouble_t;
+    using NumRepr::sllint_t;
+    using NumRepr::ullint_t;
+
+    /// R = A + B ;
+    /// A -> objeto[0] // NO HAY QUE ACTUALIZARLO
+    /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+    /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+    // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+    // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+    // REALIZAMOS LA OPERACION
+    // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+    // EL CAST SOLO CUANDO ES NECESARIO
+    // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+    //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+
+    /// ll_lista es una lista de variables de tipo long long int
+    /// ull_lista es una lista de variables de tipo unsigned long long int
+    /// ld_lista es una lista de variables de tipo long double
+    /// digito_lista es una lista de variable de tipo dig_variant
+
+    const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const tipo_o_plantilla_de_tipo_e tipo_de_left{objeto[0].tipo};
+    const tipo_o_plantilla_de_tipo_e tipo_de_right{objeto[1].tipo};
+    switch (tipo_de_left) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] * ll_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] * ull_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre]
+                                         * static_cast<sllint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ull_lista[objeto[2].nombre] = static_cast<ullint_t>(ull_lista[objeto[0].nombre]
+                                                                * ll_lista[objeto[1].nombre]);
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre] * ull_lista[objeto[1].nombre];
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre]
+                                          * static_cast<ullint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]
+                                         * static_cast<ldouble_t>(ll_lista[objeto[1].nombre]);
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]
+                                         * static_cast<ldouble_t>(ull_lista[objeto[1].nombre]);
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre] * ld_lista[objeto[1].nombre];
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const bool copia_posible = ((tipo_de_right == tipo_de_left)
+                                    && (objeto[0].base == objeto[1].base));
+        if (copia_posible) {
+            objeto[2].base = objeto[1].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre]
+                                             * digito_lista[objeto[1].nombre]; /// R <- A + B
+            objeto[2].valor = digito_lista[objeto[2].nombre];
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+    }
+    }
+
+    // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+    ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+    ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+        ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(false);
+        break;
+    }
+}
+
+
+void MainWindow::on_pushButton_cociente_clicked()
+{
+    using NumRepr::ldouble_t;
+    using NumRepr::sllint_t;
+    using NumRepr::ullint_t;
+
+    /// R = A + B ;
+    /// A -> objeto[0] // NO HAY QUE ACTUALIZARLO
+    /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+    /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+    // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+    // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+    // REALIZAMOS LA OPERACION
+    // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+    // EL CAST SOLO CUANDO ES NECESARIO
+    // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+    //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+
+    /// ll_lista es una lista de variables de tipo long long int
+    /// ull_lista es una lista de variables de tipo unsigned long long int
+    /// ld_lista es una lista de variables de tipo long double
+    /// digito_lista es una lista de variable de tipo dig_variant
+
+    const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const tipo_o_plantilla_de_tipo_e tipo_de_left{objeto[0].tipo};
+    const tipo_o_plantilla_de_tipo_e tipo_de_right{objeto[1].tipo};
+    switch (tipo_de_left) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] / ll_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] / ull_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre]
+                                         / static_cast<sllint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ull_lista[objeto[2].nombre] = static_cast<ullint_t>(ull_lista[objeto[0].nombre]
+                                                                / ll_lista[objeto[1].nombre]);
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre] / ull_lista[objeto[1].nombre];
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre]
+                                          / static_cast<ullint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]
+                                         / static_cast<ldouble_t>(ll_lista[objeto[1].nombre]);
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]
+                                         / static_cast<ldouble_t>(ull_lista[objeto[1].nombre]);
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre] / ld_lista[objeto[1].nombre];
+            objeto[2].valor = ld_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const bool copia_posible = ((tipo_de_right == tipo_de_left)
+                                    && (objeto[0].base == objeto[1].base));
+        if (copia_posible) {
+            objeto[2].base = objeto[1].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre]
+                                             / digito_lista[objeto[1].nombre]; /// R <- A + B
+            objeto[2].valor = digito_lista[objeto[2].nombre];
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+    }
+    }
+
+    // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+    ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+    ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+        ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(false);
+        break;
+    }
+}
+
+
+void MainWindow::on_pushButton_modulo_clicked()
+{
+    using NumRepr::ldouble_t;
+    using NumRepr::sllint_t;
+    using NumRepr::ullint_t;
+
+    /// R = A + B ;
+    /// A -> objeto[0] // NO HAY QUE ACTUALIZARLO
+    /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+    /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+    // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+    // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+    // REALIZAMOS LA OPERACION
+    // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+    // EL CAST SOLO CUANDO ES NECESARIO
+    // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+    //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+
+    /// ll_lista es una lista de variables de tipo long long int
+    /// ull_lista es una lista de variables de tipo unsigned long long int
+    /// ld_lista es una lista de variables de tipo long double
+    /// digito_lista es una lista de variable de tipo dig_variant
+
+    const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const tipo_o_plantilla_de_tipo_e tipo_de_left{objeto[0].tipo};
+    const tipo_o_plantilla_de_tipo_e tipo_de_right{objeto[1].tipo};
+    switch (tipo_de_left) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] % ll_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] % ull_lista[objeto[1].nombre];
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre]
+                                         % static_cast<sllint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        switch (tipo_de_right) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ull_lista[objeto[2].nombre] = static_cast<ullint_t>(ull_lista[objeto[0].nombre]
+                                                                % ll_lista[objeto[1].nombre]);
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre] % ull_lista[objeto[1].nombre];
+            objeto[2].valor = ull_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre]
+                                          % static_cast<ullint_t>(ld_lista[objeto[1].nombre]);
+            objeto[2].valor = ll_lista[objeto[2].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const bool copia_posible = ((tipo_de_right == tipo_de_left)
+                                    && (objeto[0].base == objeto[1].base));
+        if (copia_posible) {
+            objeto[2].base = objeto[1].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre]
+                                             % digito_lista[objeto[1].nombre]; /// R <- A + B
+            objeto[2].valor = digito_lista[objeto[2].nombre];
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+    }
+    }
+
+    // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+    ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+    ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+        ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(false);
+        break;
+    }
+}
+
+void MainWindow::on_pushButton_andwise_clicked()
+{
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_1{objeto[1].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    const auto tipo_0{objeto[0].tipo};
+    const auto tipo_1{objeto[1].tipo};
+
+    bool ok;
+
+    if (tipo_0 == tipo_1) {
+        objeto[2].tipo = tipo_0;
+        switch (tipo_0) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[nombre_2] = ll_lista[nombre_0] & ll_lista[nombre_1];
+            objeto[2].valor = ll_lista[nombre_2];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[nombre_2] = ull_lista[nombre_0] & ull_lista[nombre_1];
+            objeto[2].valor = ull_lista[nombre_2];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const auto radix_0{digito_lista[nombre_0].radix()};
+            const auto radix_1{digito_lista[nombre_1].radix()};
+            if (radix_0 == radix_1) {
+                digito_lista[nombre_2] = digito_lista[nombre_0] & digito_lista[nombre_1];
+                objeto[2].valor = digito_lista[nombre_2];
+                objeto[2].base = digito_lista[nombre_2].radix();
+                ok = true;
+            } else {
+                objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+                ok = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ok = false;
+        } break;
+        }
+    } else {
+        objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+        ok = false;
+    }
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_0) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+
+void MainWindow::on_pushButton_xorwise_clicked()
+{
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_1{objeto[1].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    const auto tipo_0{objeto[0].tipo};
+    const auto tipo_1{objeto[1].tipo};
+
+    bool ok;
+
+    if (tipo_0 == tipo_1) {
+        objeto[2].tipo = tipo_0;
+        switch (tipo_0) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[nombre_2] = ll_lista[nombre_0] ^ ll_lista[nombre_1];
+            objeto[2].valor = ll_lista[nombre_2];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[nombre_2] = ull_lista[nombre_0] ^ ull_lista[nombre_1];
+            objeto[2].valor = ull_lista[nombre_2];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+//            SE QUITARÍA PORQUE NO ES POSIBLE PARA DIGITO NO?
+
+//            const auto radix_0{digito_lista[nombre_0].radix()};
+//            const auto radix_1{digito_lista[nombre_1].radix()};
+//            if (radix_0 == radix_1) {
+//                digito_lista[nombre_2] = digito_lista[nombre_0] & digito_lista[nombre_1];
+//                objeto[2].valor = digito_lista[nombre_2];
+//                objeto[2].base = digito_lista[nombre_2].radix();
+//                ok = true;
+//            } else {
+//                objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+//                ok = false;
+//            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ok = false;
+        } break;
+        }
+    } else {
+        objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+        ok = false;
+    }
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_0) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+void MainWindow::on_pushButton_suma_con_asignacion_clicked()
+{
+    using NumRepr::ldouble_t;
+    using NumRepr::sllint_t;
+    using NumRepr::ullint_t;
+
+    /// A = B ; R = A;
+    /// A -> objeto[0] //    HAY QUE ACTUALIZARLO
+    /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+    /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+    // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+    // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+    // REALIZAMOS LA OPERACION
+    // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+    // EL CAST SOLO CUANDO ES NECESARIO
+    // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+    //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+    const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        objeto[0].valor = objeto[1].valor;
+        objeto[0].tipo = tipo_de_resultado;
+        ll_lista[objeto[0].nombre] += ll_lista[objeto[1].nombre]; /// A <- B
+        objeto[2].valor = objeto[0].valor;
+        objeto[2].tipo = tipo_de_resultado;
+        ll_lista[objeto[2].nombre] += ll_lista[objeto[0].nombre]; /// R <- A
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        objeto[0].valor = objeto[1].valor;
+        objeto[0].tipo = tipo_de_resultado;
+        ull_lista[objeto[0].nombre] += ull_lista[objeto[1].nombre]; /// A <- B
+        objeto[2].valor = objeto[0].valor;
+        objeto[2].tipo = tipo_de_resultado;
+        ull_lista[objeto[2].nombre] += ull_lista[objeto[0].nombre]; /// R <- A
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        objeto[0].valor = objeto[1].valor;
+        objeto[0].tipo = tipo_de_resultado;
+        ld_lista[objeto[0].nombre] += ld_lista[objeto[1].nombre]; /// A <- B
+        objeto[2].valor = objeto[0].valor;
+        objeto[2].tipo = tipo_de_resultado;
+        ld_lista[objeto[2].nombre] += ld_lista[objeto[0].nombre]; /// R <- A
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                     && (objeto[0].base == objeto[1].base))
+                                    || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+        if (copia_posible) {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].base = objeto[1].base;
+            objeto[0].tipo = tipo_de_resultado;
+            digito_lista[objeto[0].nombre] += digito_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].base = objeto[0].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] += digito_lista[objeto[0].nombre]; /// R <- A
+        }
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+    }
+    }
+
+    // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+    ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+    ui->label_plantilla_2->setVisible(true);
+    ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+        ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(true);
+        ui->label_longPF_2->setVisible(true);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(false);
+        break;
+    }
+
+    /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+    /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+    ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+    ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(
+            QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+        ui->lineEdit_Base_0->setText(
+            QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(false);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    }
+}
+
+void MainWindow::on_pushButton_compl_base_op_clicked()
+{
+    const auto tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    bool ok;
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ll_lista[nombre_2] = -(ll_lista[nombre_0]);
+        objeto[2].valor = ll_lista[nombre_2];
+        ok = true;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ull_lista[nombre_2] = -(ull_lista[nombre_0]);
+        objeto[2].valor = ull_lista[nombre_2];
+        ok = true;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const auto radix_0{digito_lista[nombre_0].radix()};
+        const auto radix_2{radix_0};
+        digito_lista[nombre_2] = -(digito_lista[nombre_0]);
+        objeto[2].base = radix_2;
+        objeto[2].valor = digito_lista[nombre_2];
+        ok = true;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ok = false;
+    }
+    }
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::longlong)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::unsignedlonglong)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+
+void MainWindow::on_pushButton_compl_Bm1_clicked()
+{
+    const auto tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    bool ok;
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const auto radix_0{digito_lista[nombre_0].radix()};
+        const auto radix_2{radix_0};
+        digito_lista[nombre_2] = digito_lista[nombre_0].C_Bm1();
+        objeto[2].base = radix_2;
+        objeto[2].valor = digito_lista[nombre_2];
+        ok = true;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ok = false;
+    }
+    }
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::longlong)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::unsignedlonglong)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+void MainWindow::on_pushButton_compl_base_clicked()
+    {
+        const auto tipo_de_resultado{objeto[0].tipo};
+        objeto[2].tipo = tipo_de_resultado;
+        const auto nombre_0{objeto[0].nombre};
+        const auto nombre_2{objeto[2].nombre};
+        bool ok;
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const auto radix_0{digito_lista[nombre_0].radix()};
+            const auto radix_2{radix_0};
+            digito_lista[nombre_2] = digito_lista[nombre_0].C_B();
+            objeto[2].base = radix_2;
+            objeto[2].valor = digito_lista[nombre_2];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ok = false;
+        }
+        }
+
+        /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ui->label_plantilla_2->setVisible(true);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::longlong)));
+            ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ui->label_plantilla_2->setVisible(true);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::unsignedlonglong)));
+            ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            ui->label_plantilla_2->setVisible(true);
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+            ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+            ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ui->label_plantilla_2->setVisible(false);
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_plantilla_2->setText(
+                QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        }
+        }
+    }
+
+
+void MainWindow::on_pushButton_resta_con_asignacion_clicked()
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        /// A = B ; R = A;
+        /// A -> objeto[0] //    HAY QUE ACTUALIZARLO
+        /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+        /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+        // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+        // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+        // REALIZAMOS LA OPERACION
+        // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+        // EL CAST SOLO CUANDO ES NECESARIO
+        // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+        //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ll_lista[objeto[0].nombre] -= ll_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[2].nombre] -= ll_lista[objeto[0].nombre]; /// R <- A
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ull_lista[objeto[0].nombre] -= ull_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[2].nombre] -= ull_lista[objeto[0].nombre]; /// R <- A
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ld_lista[objeto[0].nombre] -= ld_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ld_lista[objeto[2].nombre] -= ld_lista[objeto[0].nombre]; /// R <- A
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+            if (copia_posible) {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].base = objeto[1].base;
+            objeto[0].tipo = tipo_de_resultado;
+            digito_lista[objeto[0].nombre] -= digito_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].base = objeto[0].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] -= digito_lista[objeto[0].nombre]; /// R <- A
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre];
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+
+        /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+        /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+        ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+        ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(
+                QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+            ui->lineEdit_Base_0->setText(
+                QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(false);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        }
+    }
+
+
+void MainWindow::on_pushButton_producto_con_asinacion_clicked()
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        /// A = B ; R = A;
+        /// A -> objeto[0] //    HAY QUE ACTUALIZARLO
+        /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+        /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+        // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+        // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+        // REALIZAMOS LA OPERACION
+        // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+        // EL CAST SOLO CUANDO ES NECESARIO
+        // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+        //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ll_lista[objeto[0].nombre] *= ll_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[2].nombre] *= ll_lista[objeto[0].nombre]; /// R <- A
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ull_lista[objeto[0].nombre] *= ull_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[2].nombre] *= ull_lista[objeto[0].nombre]; /// R <- A
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ld_lista[objeto[0].nombre] *= ld_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ld_lista[objeto[2].nombre] *= ld_lista[objeto[0].nombre]; /// R <- A
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+            if (copia_posible) {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].base = objeto[1].base;
+            objeto[0].tipo = tipo_de_resultado;
+            digito_lista[objeto[0].nombre] *= digito_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].base = objeto[0].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] *= digito_lista[objeto[0].nombre]; /// R <- A
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre];
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+
+        /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+        /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+        ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+        ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(
+                QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+            ui->lineEdit_Base_0->setText(
+                QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(false);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        }
+    }
+
+
+void MainWindow::on_pushButton_cociente_con_asignacion_clicked()
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        /// A = B ; R = A;
+        /// A -> objeto[0] //    HAY QUE ACTUALIZARLO
+        /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+        /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+        // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+        // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+        // REALIZAMOS LA OPERACION
+        // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+        // EL CAST SOLO CUANDO ES NECESARIO
+        // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+        //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ll_lista[objeto[0].nombre] /= ll_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[2].nombre] /= ll_lista[objeto[0].nombre]; /// R <- A
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ull_lista[objeto[0].nombre] /= ull_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[2].nombre] /= ull_lista[objeto[0].nombre]; /// R <- A
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ld_lista[objeto[0].nombre] /= ld_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ld_lista[objeto[2].nombre] /= ld_lista[objeto[0].nombre]; /// R <- A
+            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+            if (copia_posible) {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].base = objeto[1].base;
+            objeto[0].tipo = tipo_de_resultado;
+            digito_lista[objeto[0].nombre] /= digito_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].base = objeto[0].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] /= digito_lista[objeto[0].nombre]; /// R <- A
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre];
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+
+        /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+        /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+        ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+        ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(
+                QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+            ui->lineEdit_Base_0->setText(
+                QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(false);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        }
+    }
+
+
+void MainWindow::on_pushButton_modulo_con_asignacion_clicked()
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        /// A = B ; R = A;
+        /// A -> objeto[0] //    HAY QUE ACTUALIZARLO
+        /// B -> objeto[1] // NO HAY QUE ACTUALIZARLO
+        /// R -> objeto[2] //    HAY QUE ACTUALIZARLO
+
+        // CUANDO TENEMOS UN NOMBRE DE VARIABLE LA DUPLICAMOS EN LL_LISTA ULL_LISTA LD_LISTA DIGITO_LISTA
+        // SI LA VARIABLE HAY QUE CREARLA EN OTRA LISTA SE BORRA DE LA LISTA ACTUAL
+
+        // REALIZAMOS LA OPERACION
+        // SE HACE UN CAST DEL OBJETO 1 Y SE ASIGNA AL OBJETO 0
+        // EL CAST SOLO CUANDO ES NECESARIO
+        // SI EL CAST NO SE PUEDE HACER DEBERÍA DE SALTAR UN MENSAJE: TODO
+        //tipo_o_plantilla_de_tipo_e tipo_de_resultado = tipo_o_plantilla_de_tipo_e::desconocido;
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ll_lista[objeto[0].nombre] %= ll_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[2].nombre] %= ll_lista[objeto[0].nombre]; /// R <- A
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].tipo = tipo_de_resultado;
+            ull_lista[objeto[0].nombre] %= ull_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[2].nombre] %= ull_lista[objeto[0].nombre]; /// R <- A
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+            if (copia_posible) {
+            objeto[0].valor = objeto[1].valor;
+            objeto[0].base = objeto[1].base;
+            objeto[0].tipo = tipo_de_resultado;
+            digito_lista[objeto[0].nombre] %= digito_lista[objeto[1].nombre]; /// A <- B
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].base = objeto[0].base;
+            objeto[2].tipo = tipo_de_resultado;
+            digito_lista[objeto[2].nombre] %= digito_lista[objeto[0].nombre]; /// R <- A
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre];
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+
+        /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+        /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+        ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+        ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(
+                QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+            ui->lineEdit_Base_0->setText(
+                QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(false);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        }
+    }
+
+void MainWindow::on_pushButton_xorwise_con_asignacion_clicked()
+{
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_1{objeto[1].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    const auto tipo_0{objeto[0].tipo};
+    const auto tipo_1{objeto[1].tipo};
+    const auto tipo_de_resultado{tipo_0};
+
+    bool ok;
+
+    if (tipo_0 == tipo_1) {
+        objeto[2].tipo = tipo_0;
+        switch (tipo_0) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[nombre_2] = ll_lista[nombre_0] ^= ll_lista[nombre_1];
+            objeto[2].valor = ll_lista[nombre_2];
+            objeto[0].valor = ll_lista[nombre_0];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[nombre_2] = ull_lista[nombre_0] ^= ull_lista[nombre_1];
+            objeto[2].valor = ull_lista[nombre_2];
+            objeto[0].valor = ll_lista[nombre_0];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ok = false;
+        } break;
+        }
+    } else {
+        objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+        ok = false;
+    }
+
+    /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+    /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+    ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+    ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(
+            QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+        ui->lineEdit_Base_0->setText(
+            QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(false);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    }
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_0) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+
+void MainWindow::on_pushButton_mayor_clicked()
+{
+    bool resultado;
+    bool comparacion_hecha = false;
+    const std::string nombre_0{objeto[0].nombre};
+    const std::string nombre_1{objeto[1].nombre};
+    switch (objeto[0].tipo) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ll_lista[nombre_0] > ll_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            if (ll_lista[nombre_0] >= 0) {
+                resultado = (static_cast<ullint_t>(ll_lista[nombre_0]) > ull_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ll_lista[nombre_0]) > ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            if (ll_lista[nombre_1] >= 0) {
+                resultado = (ull_lista[nombre_0] > static_cast<ullint_t>(ll_lista[nombre_1]));
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ull_lista[nombre_0] > ull_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ull_lista[nombre_0]) > ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ld_lista[nombre_0] > static_cast<ldouble_t>(ll_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ld_lista[nombre_0] > static_cast<ldouble_t>(ull_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (ld_lista[nombre_0] > ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ll_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ull_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == static_cast<sllint_t>(ld_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            if (digito_lista[nombre_0].radix() > digito_lista[nombre_1].radix()) {
+                resultado = (digito_lista[nombre_0] > digito_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                comparacion_hecha = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        comparacion_hecha = false;
+    }
+    }
+
+    /// ACTUALIZACION DE LA LINEA 3 (RESULTADO)
+    ui->lineEdit_nombre_in_2->setVisible(true);
+    ui->lineEdit_nombre_in_2->setText("Resultado opcional");
+    ui->label_plantilla_2->setVisible(true);
+    ui->label_plantilla_2->setText("tipo bool");
+    ui->label_base_2->setVisible(false);
+    ui->label_longPE_2->setVisible(false);
+    ui->label_longPF_2->setVisible(false);
+    ui->label_valor_2->setVisible(true);
+    if (comparacion_hecha) {
+        if (resultado) {
+            ui->label_valor_2->setText("true");
+        } else {
+            ui->label_valor_2->setText("false");
+        }
+    } else {
+        ui->label_valor_2->setText("Comparacion no hecha");
+    }
+}
+
+void MainWindow::on_pushButton_menor_clicked()
+{
+    bool resultado;
+    bool comparacion_hecha = false;
+    const std::string nombre_0{objeto[0].nombre};
+    const std::string nombre_1{objeto[1].nombre};
+    switch (objeto[0].tipo) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ll_lista[nombre_0] < ll_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            if (ll_lista[nombre_0] >= 0) {
+                resultado = (static_cast<ullint_t>(ll_lista[nombre_0]) < ull_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ll_lista[nombre_0]) < ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            if (ll_lista[nombre_1] >= 0) {
+                resultado = (ull_lista[nombre_0] < static_cast<ullint_t>(ll_lista[nombre_1]));
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ull_lista[nombre_0] < ull_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ull_lista[nombre_0]) < ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ld_lista[nombre_0] < static_cast<ldouble_t>(ll_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ld_lista[nombre_0] < static_cast<ldouble_t>(ull_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (ld_lista[nombre_0] < ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            ///resultado = (digito_lista[nombre_0] < ll_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            ///resultado = (digito_lista[nombre_0] < ull_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            ///resultado = (digito_lista[nombre_0] < static_cast<sllint_t>(ld_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            if (digito_lista[nombre_0].radix() == digito_lista[nombre_1].radix()) {
+                resultado = (digito_lista[nombre_0] < digito_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                comparacion_hecha = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        comparacion_hecha = false;
+    }
+    }
+
+    /// ACTUALIZACION DE LA LINEA 3 (RESULTADO)
+    ui->lineEdit_nombre_in_2->setVisible(true);
+    ui->lineEdit_nombre_in_2->setText("Resultado opcional");
+    ui->label_plantilla_2->setVisible(true);
+    ui->label_plantilla_2->setText("tipo bool");
+    ui->label_base_2->setVisible(false);
+    ui->label_longPE_2->setVisible(false);
+    ui->label_longPF_2->setVisible(false);
+    ui->label_valor_2->setVisible(true);
+    if (comparacion_hecha) {
+        if (resultado) {
+            ui->label_valor_2->setText("true");
+        } else {
+            ui->label_valor_2->setText("false");
+        }
+    } else {
+        ui->label_valor_2->setText("Comparacion no hecha");
+    }
+}
+
+
+void MainWindow::on_pushButton_mayor_igual_clicked()
+{
+    bool resultado;
+    bool comparacion_hecha = false;
+    const std::string nombre_0{objeto[0].nombre};
+    const std::string nombre_1{objeto[1].nombre};
+    switch (objeto[0].tipo) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ll_lista[nombre_0] >= ll_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            if (ll_lista[nombre_0] >= 0) {
+                resultado = (static_cast<ullint_t>(ll_lista[nombre_0]) >= ull_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ll_lista[nombre_0]) >= ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            if (ll_lista[nombre_1] >= 0) {
+                resultado = (ull_lista[nombre_0] >= static_cast<ullint_t>(ll_lista[nombre_1]));
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ull_lista[nombre_0] >= ull_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ull_lista[nombre_0]) >= ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ld_lista[nombre_0] >= static_cast<ldouble_t>(ll_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ld_lista[nombre_0] >= static_cast<ldouble_t>(ull_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (ld_lista[nombre_0] >= ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ll_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ull_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == static_cast<sllint_t>(ld_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            if (digito_lista[nombre_0].radix() >= digito_lista[nombre_1].radix()) {
+                resultado = (digito_lista[nombre_0] >= digito_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                comparacion_hecha = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        comparacion_hecha = false;
+    }
+    }
+
+    /// ACTUALIZACION DE LA LINEA 3 (RESULTADO)
+    ui->lineEdit_nombre_in_2->setVisible(true);
+    ui->lineEdit_nombre_in_2->setText("Resultado opcional");
+    ui->label_plantilla_2->setVisible(true);
+    ui->label_plantilla_2->setText("tipo bool");
+    ui->label_base_2->setVisible(false);
+    ui->label_longPE_2->setVisible(false);
+    ui->label_longPF_2->setVisible(false);
+    ui->label_valor_2->setVisible(true);
+    if (comparacion_hecha) {
+        if (resultado) {
+            ui->label_valor_2->setText("true");
+        } else {
+            ui->label_valor_2->setText("false");
+        }
+    } else {
+        ui->label_valor_2->setText("Comparacion no hecha");
+    }
+}
+
+
+void MainWindow::on_pushButton_menor_igual_clicked()
+{
+    bool resultado;
+    bool comparacion_hecha = false;
+    const std::string nombre_0{objeto[0].nombre};
+    const std::string nombre_1{objeto[1].nombre};
+    switch (objeto[0].tipo) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ll_lista[nombre_0] <= ll_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            if (ll_lista[nombre_0] >= 0) {
+                resultado = (static_cast<ullint_t>(ll_lista[nombre_0]) <= ull_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ll_lista[nombre_0]) <= ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            if (ll_lista[nombre_1] >= 0) {
+                resultado = (ull_lista[nombre_0] <= static_cast<ullint_t>(ll_lista[nombre_1]));
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ull_lista[nombre_0] <= ull_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ull_lista[nombre_0]) <= ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ld_lista[nombre_0] <= static_cast<ldouble_t>(ll_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ld_lista[nombre_0] <= static_cast<ldouble_t>(ull_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (ld_lista[nombre_0] <= ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ll_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ull_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == static_cast<sllint_t>(ld_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            if (digito_lista[nombre_0].radix() <= digito_lista[nombre_1].radix()) {
+                resultado = (digito_lista[nombre_0] <= digito_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                comparacion_hecha = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        comparacion_hecha = false;
+    }
+    }
+
+    /// ACTUALIZACION DE LA LINEA 3 (RESULTADO)
+    ui->lineEdit_nombre_in_2->setVisible(true);
+    ui->lineEdit_nombre_in_2->setText("Resultado opcional");
+    ui->label_plantilla_2->setVisible(true);
+    ui->label_plantilla_2->setText("tipo bool");
+    ui->label_base_2->setVisible(false);
+    ui->label_longPE_2->setVisible(false);
+    ui->label_longPF_2->setVisible(false);
+    ui->label_valor_2->setVisible(true);
+    if (comparacion_hecha) {
+        if (resultado) {
+            ui->label_valor_2->setText("true");
+        } else {
+            ui->label_valor_2->setText("false");
+        }
+    } else {
+        ui->label_valor_2->setText("Comparacion no hecha");
+    }
+}
+
+
+void MainWindow::on_pushButton_no_igual_clicked()
+{
+    bool resultado;
+    bool comparacion_hecha = false;
+    const std::string nombre_0{objeto[0].nombre};
+    const std::string nombre_1{objeto[1].nombre};
+    switch (objeto[0].tipo) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ll_lista[nombre_0] != ll_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            if (ll_lista[nombre_0] >= 0) {
+                resultado = (static_cast<ullint_t>(ll_lista[nombre_0]) != ull_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ll_lista[nombre_0]) != ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            if (ll_lista[nombre_1] >= 0) {
+                resultado = (ull_lista[nombre_0] != static_cast<ullint_t>(ll_lista[nombre_1]));
+                comparacion_hecha = true;
+            } else {
+                resultado = false;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ull_lista[nombre_0] != ull_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (static_cast<ldouble_t>(ull_lista[nombre_0]) != ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ld_lista[nombre_0] != static_cast<ldouble_t>(ll_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ld_lista[nombre_0] != static_cast<ldouble_t>(ull_lista[nombre_1]));
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            resultado = (ld_lista[nombre_0] != ld_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ll_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ull_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == static_cast<sllint_t>(ld_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            if (digito_lista[nombre_0].radix() != digito_lista[nombre_1].radix()) {
+                resultado = (digito_lista[nombre_0] != digito_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                comparacion_hecha = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        comparacion_hecha = false;
+    }
+    }
+
+    /// ACTUALIZACION DE LA LINEA 3 (RESULTADO)
+    ui->lineEdit_nombre_in_2->setVisible(true);
+    ui->lineEdit_nombre_in_2->setText("Resultado opcional");
+    ui->label_plantilla_2->setVisible(true);
+    ui->label_plantilla_2->setText("tipo bool");
+    ui->label_base_2->setVisible(false);
+    ui->label_longPE_2->setVisible(false);
+    ui->label_longPF_2->setVisible(false);
+    ui->label_valor_2->setVisible(true);
+    if (comparacion_hecha) {
+        if (resultado) {
+            ui->label_valor_2->setText("true");
+        } else {
+            ui->label_valor_2->setText("false");
+        }
+    } else {
+        ui->label_valor_2->setText("Comparacion no hecha");
+    }
+}
+
+void MainWindow::on_pushButton_spaceship_clicked()
+{
+    std::strong_ordering resultado{std::strong_ordering::equivalent};
+    bool comparacion_hecha = false;
+    const std::string nombre_0{objeto[0].nombre};
+    const std::string nombre_1{objeto[1].nombre};
+    const auto tipo_0 = objeto[0].tipo;
+    const auto tipo_1 = objeto[1].tipo;
+    switch (tipo_0) {
+    case tipo_o_plantilla_de_tipo_e::longlong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            resultado = (ll_lista[nombre_0] <=> ll_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            if (ll_lista[nombre_0] >= 0) {
+                resultado = (static_cast<ullint_t>(ll_lista[nombre_0]) <=> ull_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ///resultado = (static_cast<ldouble_t>(ll_lista[nombre_0]) <=> ld_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            if (ll_lista[nombre_1] >= 0) {
+                resultado = (ull_lista[nombre_0] <=> static_cast<ullint_t>(ll_lista[nombre_1]));
+                comparacion_hecha = true;
+            } else {
+                resultado = std::strong_ordering::greater;
+                comparacion_hecha = true;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            resultado = (ull_lista[nombre_0] <=> ull_lista[nombre_1]);
+            comparacion_hecha = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ///resultado = (static_cast<ldouble_t>(ull_lista[nombre_0]) <=> ld_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::longdouble:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ///resultado = (ld_lista[nombre_0] <=> static_cast<ldouble_t>(ll_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ///resultado = (ld_lista[nombre_0] <=> static_cast<ldouble_t>(ull_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ///resultado = (ld_lista[nombre_0] <=> ld_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+            // el dígito a la derecha no funciona
+            // para comparar un dígito con un built-in el dítigo dever ser left
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::digito:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ll_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == ull_lista[nombre_1]);
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
+            /// resultado = (digito_lista[nombre_0] == static_cast<sllint_t>(ld_lista[nombre_1]));
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            if (digito_lista[nombre_0].radix() == digito_lista[nombre_1].radix()) {
+                resultado = (digito_lista[nombre_0] <=> digito_lista[nombre_1]);
+                comparacion_hecha = true;
+            } else {
+                comparacion_hecha = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::registro:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regnatural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::regentero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::racionalent:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::natural:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::entero:
+        switch (objeto[1].tipo) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            comparacion_hecha = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            comparacion_hecha = false;
+        }
+        }
+        break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        comparacion_hecha = false;
+    }
+    }
+
+    /// ACTUALIZACION DE LA LINEA 3 (RESULTADO)
+    ui->lineEdit_nombre_in_2->setVisible(true);
+    ui->lineEdit_nombre_in_2->setText("Resultado opcional");
+    ui->label_plantilla_2->setVisible(true);
+    ui->label_plantilla_2->setText("tipo bool");
+    ui->label_base_2->setVisible(false);
+    ui->label_longPE_2->setVisible(false);
+    ui->label_longPF_2->setVisible(false);
+    ui->label_valor_2->setVisible(true);
+    if (comparacion_hecha) {
+        if (resultado == std::strong_ordering::equal) {
+            ui->label_valor_2->setText("==");
+        } else if (resultado == std::strong_ordering::greater) {
+            ui->label_valor_2->setText(">");
+        }
+        else if (resultado == std::strong_ordering::less){
+            ui->label_valor_2->setText("<");
+        }
+        else{
+            ui->label_valor_2->setText("No disponible");
+        }
+    } else {
+        ui->label_valor_2->setText("Comparacion no hecha");
+    }
+}
+
+
+void MainWindow::on_pushButton_orwise_con_asignacion_clicked()
+{
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_1{objeto[1].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    const auto tipo_0{objeto[0].tipo};
+    const auto tipo_1{objeto[1].tipo};
+    const auto tipo_de_resultado{tipo_0};
+
+    bool ok;
+
+    if (tipo_0 == tipo_1) {
+        objeto[2].tipo = tipo_0;
+        switch (tipo_0) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[nombre_2] = ll_lista[nombre_0] |= ll_lista[nombre_1];
+            objeto[2].valor = ll_lista[nombre_2];
+            objeto[0].valor = ll_lista[nombre_0];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[nombre_2] = ull_lista[nombre_0] |= ull_lista[nombre_1];
+            objeto[2].valor = ull_lista[nombre_2];
+            objeto[0].valor = ll_lista[nombre_0];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const auto radix_0{digito_lista[nombre_0].radix()};
+            const auto radix_1{digito_lista[nombre_1].radix()};
+            if (radix_0 == radix_1) {
+                digito_lista[nombre_2] = digito_lista[nombre_0] |= digito_lista[nombre_1];
+                objeto[2].valor = digito_lista[nombre_2];
+                objeto[2].base = digito_lista[nombre_2].radix();
+                objeto[0].base = digito_lista[nombre_0].radix();
+                objeto[0].valor = ll_lista[nombre_0];
+                ok = true;
+            } else {
+                objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+                ok = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ok = false;
+        } break;
+        }
+    } else {
+        objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+        ok = false;
+    }
+
+    /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+    /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+    ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+    ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(
+            QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+        ui->lineEdit_Base_0->setText(
+            QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(false);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    }
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_0) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+
+void MainWindow::on_pushButton_andwise_con_asignacion_clicked()
+{
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_1{objeto[1].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    const auto tipo_0{objeto[0].tipo};
+    const auto tipo_1{objeto[1].tipo};
+    const auto tipo_de_resultado{tipo_0};
+
+    bool ok;
+
+    if (tipo_0 == tipo_1) {
+        objeto[2].tipo = tipo_0;
+        switch (tipo_0) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ll_lista[nombre_2] = (ll_lista[nombre_0] &= ll_lista[nombre_1]);
+            objeto[2].valor = ll_lista[nombre_2];
+            objeto[0].valor = ll_lista[nombre_0];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ull_lista[nombre_2] = (ull_lista[nombre_0] &= ull_lista[nombre_1]);
+            objeto[2].valor = ull_lista[nombre_2];
+            objeto[0].valor = ll_lista[nombre_0];
+            ok = true;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const auto radix_0{digito_lista[nombre_0].radix()};
+            const auto radix_1{digito_lista[nombre_1].radix()};
+            if (radix_0 == radix_1) {
+                digito_lista[nombre_2] = (digito_lista[nombre_0] &= digito_lista[nombre_1]);
+                objeto[2].valor = digito_lista[nombre_2];
+                objeto[2].base = digito_lista[nombre_2].radix();
+                objeto[0].base = digito_lista[nombre_0].radix();
+                objeto[0].valor = ll_lista[nombre_0];
+                ok = true;
+            } else {
+                objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+                ok = false;
+            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ok = false;
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ok = false;
+        } break;
+        }
+    } else {
+        objeto[2].tipo = tipo_o_plantilla_de_tipo_e::desconocido;
+        ok = false;
+    }
+
+    /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+    /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+    ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+    ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(
+            QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+        ui->lineEdit_Base_0->setText(
+            QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(false);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    }
+
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_0) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(QString::fromStdString(a_texto(objeto[2].tipo)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+
+void MainWindow::on_pushButton_despl_right2left_con_asignacion_clicked()
+{
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[0].nombre] = ll_lista[objeto[0].nombre] << ll_lista[objeto[1].nombre];
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre]; /// R <- A
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[0].nombre] = ull_lista[objeto[0].nombre] << ull_lista[objeto[1].nombre];
+            ull_lista[objeto[2].nombre] =ull_lista[objeto[0].nombre]; /// R <- A
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+//            objeto[0].tipo = tipo_de_resultado;
+//            objeto[2].valor = objeto[0].valor;
+//            objeto[2].tipo = tipo_de_resultado;
+//            ld_lista[objeto[0].nombre] = ld_lista[objeto[0].nombre] << ld_lista[objeto[1].nombre];
+//            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]; /// R <- A
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+//            if (copia_posible) {
+//                //objeto[0].valor = objeto[1].valor;
+//                objeto[0].base = objeto[1].base;
+//                objeto[0].tipo = tipo_de_resultado;
+//                //digito_lista[objeto[0].nombre] *= digito_lista[objeto[1].nombre]; /// A <- B
+//                objeto[2].valor = objeto[0].valor;
+//                objeto[2].base = objeto[0].base;
+//                objeto[2].tipo = tipo_de_resultado;
+//                //digito_lista[objeto[2].nombre] *= digito_lista[objeto[0].nombre]; /// R <- A
+
+//                //objeto[0].tipo = tipo_de_resultado;
+//                //objeto[2].valor = objeto[0].valor;
+//                //objeto[2].tipo = tipo_de_resultado;
+//                digito_lista[objeto[0].nombre] = digito_lista[objeto[0].nombre] << digito_lista[objeto[1].nombre];
+//                digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre]; /// R <- A
+//            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+
+        /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+        /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+        ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+        ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(
+                QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+            ui->lineEdit_Base_0->setText(
+                QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(false);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        }
+    }
+}
+
+
+
+void MainWindow::on_pushButton_despl_left2right_con_asignacion_clicked()
+{
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[0].nombre] = ll_lista[objeto[0].nombre] >> ll_lista[objeto[1].nombre];
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre]; /// R <- A
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[0].nombre] = ull_lista[objeto[0].nombre] >> ull_lista[objeto[1].nombre];
+            ull_lista[objeto[2].nombre] =ull_lista[objeto[0].nombre]; /// R <- A
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            //            objeto[0].tipo = tipo_de_resultado;
+            //            objeto[2].valor = objeto[0].valor;
+            //            objeto[2].tipo = tipo_de_resultado;
+            //            ld_lista[objeto[0].nombre] = ld_lista[objeto[0].nombre] << ld_lista[objeto[1].nombre];
+            //            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre]; /// R <- A
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+            //            if (copia_posible) {
+            //                //objeto[0].valor = objeto[1].valor;
+            //                objeto[0].base = objeto[1].base;
+            //                objeto[0].tipo = tipo_de_resultado;
+            //                //digito_lista[objeto[0].nombre] *= digito_lista[objeto[1].nombre]; /// A <- B
+            //                objeto[2].valor = objeto[0].valor;
+            //                objeto[2].base = objeto[0].base;
+            //                objeto[2].tipo = tipo_de_resultado;
+            //                //digito_lista[objeto[2].nombre] *= digito_lista[objeto[0].nombre]; /// R <- A
+
+            //                //objeto[0].tipo = tipo_de_resultado;
+            //                //objeto[2].valor = objeto[0].valor;
+            //                //objeto[2].tipo = tipo_de_resultado;
+            //                digito_lista[objeto[0].nombre] = digito_lista[objeto[0].nombre] << digito_lista[objeto[1].nombre];
+            //                digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre]; /// R <- A
+            //            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+
+        /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+        /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+        ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+        ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            ui->lineEdit_Base_0->setVisible(false);
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_valor_0->setText(
+                QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+            ui->lineEdit_Base_0->setText(
+                QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+            ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+            ui->lineEdit_longitud_PE_0->setVisible(true);
+            ui->lineEdit_longitud_PF_0->setVisible(true);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(true);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(true);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+            ui->lineEdit_longitud_PE_0->setVisible(false);
+            ui->lineEdit_longitud_PF_0->setVisible(false);
+            ui->lineEdit_valor_0->setVisible(false);
+            ui->lineEdit_Base_0->setVisible(false);
+        } break;
+        }
+    }
+}
+
+void MainWindow::on_pushButton_despl_right2left_clicked()
+{
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] << ll_lista[objeto[1].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre] << ull_lista[objeto[1].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            //            objeto[0].tipo = tipo_de_resultado;
+            //            objeto[2].valor = objeto[0].valor;
+            //            objeto[2].tipo = tipo_de_resultado;
+            //            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre] << ld_lista[objeto[1].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+    }
+}
+
+void MainWindow::on_pushButton_despl_left2right_clicked()
+{
+    {
+        using NumRepr::ldouble_t;
+        using NumRepr::sllint_t;
+        using NumRepr::ullint_t;
+
+        const tipo_o_plantilla_de_tipo_e tipo_de_resultado{objeto[1].tipo};
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre] >>  ll_lista[objeto[1].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+            objeto[0].tipo = tipo_de_resultado;
+            objeto[2].valor = objeto[0].valor;
+            objeto[2].tipo = tipo_de_resultado;
+            ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre] >> ull_lista[objeto[1].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::longdouble: {
+            //            objeto[0].tipo = tipo_de_resultado;
+            //            objeto[2].valor = objeto[0].valor;
+            //            objeto[2].tipo = tipo_de_resultado;
+            //            ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre] << ld_lista[objeto[1].nombre];
+        } break;
+        case tipo_o_plantilla_de_tipo_e::digito: {
+            const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
+                                         && (objeto[0].base == objeto[1].base))
+                                        || (objeto[0].tipo != tipo_o_plantilla_de_tipo_e::digito));
+            //            if (copia_posible) {
+            //                //objeto[0].valor = objeto[1].valor;
+            //                objeto[0].base = objeto[1].base;
+            //                objeto[0].tipo = tipo_de_resultado;
+            //                //digito_lista[objeto[0].nombre] *= digito_lista[objeto[1].nombre]; /// A <- B
+            //                objeto[2].valor = objeto[0].valor;
+            //                objeto[2].base = objeto[0].base;
+            //                objeto[2].tipo = tipo_de_resultado;
+            //                //digito_lista[objeto[2].nombre] *= digito_lista[objeto[0].nombre]; /// R <- A
+
+            //                //objeto[0].tipo = tipo_de_resultado;
+            //                //objeto[2].valor = objeto[0].valor;
+            //                //objeto[2].tipo = tipo_de_resultado;
+            //                digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre] << digito_lista[objeto[1].nombre];
+            //            }
+        } break;
+        case tipo_o_plantilla_de_tipo_e::registro: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regnatural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::regentero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::racionalent: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::natural: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::entero: {
+        } break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+        default: {
+        }
+        }
+
+        // ACTUALIZAMOS (PINTAMOS EN UI) EL OBJETO 2 RESULTADO
+        ui->lineEdit_nombre_in_2->setText(QString::fromStdString(objeto[2].nombre));
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_plantilla_2->setText(to_text(tipo_de_resultado));
+        switch (tipo_de_resultado) {
+        case tipo_o_plantilla_de_tipo_e::longlong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(sllint_t(ll_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::unsignedlonglong:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ullint_t(ull_lista[objeto[2].nombre])));
+            break;
+        case tipo_o_plantilla_de_tipo_e::longdouble:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_valor_2->setText(QString::number(ldouble_t(ld_lista[objeto[2].nombre]), 'g', 6));
+            break;
+        case tipo_o_plantilla_de_tipo_e::digito:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            ui->label_base_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre].radix())));
+            ui->label_valor_2->setText(QString::number(ullint_t(digito_lista[objeto[2].nombre]())));
+            break;
+        case tipo_o_plantilla_de_tipo_e::registro:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regnatural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::regentero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalnat:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::racionalent:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(true);
+            ui->label_longPF_2->setVisible(true);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::natural:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::entero:
+            ui->label_base_2->setVisible(true);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(true);
+            break;
+        case tipo_o_plantilla_de_tipo_e::desconocido:
+            ui->label_base_2->setVisible(false);
+            ui->label_longPE_2->setVisible(false);
+            ui->label_longPF_2->setVisible(false);
+            ui->label_valor_2->setVisible(false);
+            break;
+        }
+    }
+}
+
+
+void MainWindow::on_pushButton_compl_Bm1_modifica_clicked()
+{
+    const auto tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    bool ok;
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const auto radix_0{digito_lista[nombre_0].radix()};
+        const auto radix_2{radix_0};
+        digito_lista[nombre_2] = digito_lista[nombre_0].mC_Bm1();
+        objeto[2].base = radix_2;
+        objeto[2].valor = digito_lista[nombre_2];
+        objeto[0].valor = digito_lista[nombre_0];
+        ok = true;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ok = false;
+    }
+    }
+
+    /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+    /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+    ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+    ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(
+            QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+        ui->lineEdit_Base_0->setText(
+            QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(false);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    }
+
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::longlong)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::unsignedlonglong)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
+
+void MainWindow::on_pushButton_compl_base_modifica_clicked()
+{
+    const auto tipo_de_resultado{objeto[0].tipo};
+    objeto[2].tipo = tipo_de_resultado;
+    const auto nombre_0{objeto[0].nombre};
+    const auto nombre_2{objeto[2].nombre};
+    bool ok;
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        const auto radix_0{digito_lista[nombre_0].radix()};
+        const auto radix_2{radix_0};
+        digito_lista[nombre_2] = digito_lista[nombre_0].mC_B();
+        objeto[2].base = radix_2;
+        objeto[2].valor = digito_lista[nombre_2];
+        objeto[0].valor = digito_lista[nombre_0];
+        ok = true;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ok = false;
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ok = false;
+    }
+    }
+
+
+    /// ACTUALIZAMOS EL OBJETO 0 EN EL UI
+    /// EL BOJETO 0 HA CAMBIADO EN TODAS PARTES MENOS EN EL UI
+    ui->lineEdit_nombre_in_0->setText(QString::fromStdString(objeto[0].nombre));
+    ui->comboBox_plantilla_0->setCurrentIndex(a_indice(tipo_de_resultado));
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(sllint_t(ll_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(ull_lista[objeto[0].nombre])));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->lineEdit_Base_0->setVisible(false);
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_valor_0->setText(
+            QString::number(ldouble_t(ld_lista[objeto[0].nombre]), 'g', 6));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+        ui->lineEdit_Base_0->setText(
+            QString::number(ullint_t(digito_lista[objeto[0].nombre].radix())));
+        ui->lineEdit_valor_0->setText(QString::number(ullint_t(digito_lista[objeto[0].nombre]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->lineEdit_longitud_PE_0->setVisible(true);
+        ui->lineEdit_longitud_PF_0->setVisible(true);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(true);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(true);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->lineEdit_longitud_PE_0->setVisible(false);
+        ui->lineEdit_longitud_PF_0->setVisible(false);
+        ui->lineEdit_valor_0->setVisible(false);
+        ui->lineEdit_Base_0->setVisible(false);
+    } break;
+    }
+
+
+    /// ACTUALIZACIÓN DEL RESULTADO (LINEA 3)
+
+    switch (tipo_de_resultado) {
+    case tipo_o_plantilla_de_tipo_e::longlong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::longlong)));
+        ui->label_valor_2->setText(QString::number(ll_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::unsignedlonglong)));
+        ui->label_valor_2->setText(QString::number(ull_lista[nombre_2]));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::longdouble: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::digito: {
+        ui->label_plantilla_2->setVisible(true);
+        ui->label_base_2->setVisible(true);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+        ui->label_base_2->setText(QString::number(digito_lista[nombre_2].radix()));
+        ui->label_valor_2->setText(QString::number(static_cast<ullint_t>(digito_lista[nombre_2]())));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::registro: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regnatural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::regentero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalnat: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::racionalent: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::natural: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::entero: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    } break;
+    case tipo_o_plantilla_de_tipo_e::desconocido:
+    default: {
+        ui->label_plantilla_2->setVisible(false);
+        ui->label_base_2->setVisible(false);
+        ui->label_longPE_2->setVisible(false);
+        ui->label_longPF_2->setVisible(false);
+        ui->label_valor_2->setVisible(true);
+        ui->label_plantilla_2->setText(
+            QString::fromStdString(a_texto(tipo_o_plantilla_de_tipo_e::desconocido)));
+    }
+    }
+}
+
