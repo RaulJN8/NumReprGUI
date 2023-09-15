@@ -3384,6 +3384,7 @@ void MainWindow::on_pushButton_suma_con_asignacion_clicked()
         objeto[2].valor = objeto[0].valor;
         objeto[2].tipo = tipo_de_resultado;
         ll_lista[objeto[2].nombre] += ll_lista[objeto[0].nombre]; /// R <- A
+        ll_lista[objeto[2].nombre] = ll_lista[objeto[0].nombre];
     } break;
     case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
         objeto[0].valor = objeto[1].valor;
@@ -3392,6 +3393,7 @@ void MainWindow::on_pushButton_suma_con_asignacion_clicked()
         objeto[2].valor = objeto[0].valor;
         objeto[2].tipo = tipo_de_resultado;
         ull_lista[objeto[2].nombre] += ull_lista[objeto[0].nombre]; /// R <- A
+        ull_lista[objeto[2].nombre] = ull_lista[objeto[0].nombre];
     } break;
     case tipo_o_plantilla_de_tipo_e::longdouble: {
         objeto[0].valor = objeto[1].valor;
@@ -3400,6 +3402,7 @@ void MainWindow::on_pushButton_suma_con_asignacion_clicked()
         objeto[2].valor = objeto[0].valor;
         objeto[2].tipo = tipo_de_resultado;
         ld_lista[objeto[2].nombre] += ld_lista[objeto[0].nombre]; /// R <- A
+        ld_lista[objeto[2].nombre] = ld_lista[objeto[0].nombre];
     } break;
     case tipo_o_plantilla_de_tipo_e::digito: {
         const bool copia_posible = (((objeto[0].tipo == tipo_o_plantilla_de_tipo_e::digito)
@@ -3414,6 +3417,7 @@ void MainWindow::on_pushButton_suma_con_asignacion_clicked()
             objeto[2].base = objeto[0].base;
             objeto[2].tipo = tipo_de_resultado;
             digito_lista[objeto[2].nombre] += digito_lista[objeto[0].nombre]; /// R <- A
+            digito_lista[objeto[2].nombre] = digito_lista[objeto[0].nombre];
         }
     } break;
     case tipo_o_plantilla_de_tipo_e::registro: {
@@ -5473,7 +5477,7 @@ void MainWindow::on_pushButton_mayor_clicked()
             }
         } break;
         case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
-            resultado = (ull_lista[nombre_0] > ull_lista[nombre_1]);
+            resultado = (ull_lista[nombre_0] < ull_lista[nombre_1]);
             comparacion_hecha = true;
         } break;
         case tipo_o_plantilla_de_tipo_e::longdouble: {
@@ -5562,21 +5566,21 @@ void MainWindow::on_pushButton_mayor_clicked()
         switch (objeto[1].tipo) {
         case tipo_o_plantilla_de_tipo_e::longlong: {
             /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
-            /// resultado = (digito_lista[nombre_0] == ll_lista[nombre_1]);
+            ///resultado = (digito_lista[nombre_0] < ll_lista[nombre_1]);
             comparacion_hecha = false;
         } break;
         case tipo_o_plantilla_de_tipo_e::unsignedlonglong: {
             /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
-            /// resultado = (digito_lista[nombre_0] == ull_lista[nombre_1]);
+            ///resultado = (digito_lista[nombre_0] < ull_lista[nombre_1]);
             comparacion_hecha = false;
         } break;
         case tipo_o_plantilla_de_tipo_e::longdouble: {
             /// POR HACER LA COMPARACIÓN EN EL DIG_VARIANT
-            /// resultado = (digito_lista[nombre_0] == static_cast<sllint_t>(ld_lista[nombre_1]));
+            ///resultado = (digito_lista[nombre_0] < static_cast<sllint_t>(ld_lista[nombre_1]));
             comparacion_hecha = false;
         } break;
         case tipo_o_plantilla_de_tipo_e::digito: {
-            if (digito_lista[nombre_0].radix() > digito_lista[nombre_1].radix()) {
+            if (digito_lista[nombre_0].radix() == digito_lista[nombre_1].radix()) {
                 resultado = (digito_lista[nombre_0] > digito_lista[nombre_1]);
                 comparacion_hecha = true;
             } else {
@@ -7659,7 +7663,7 @@ void MainWindow::on_pushButton_no_igual_clicked()
             comparacion_hecha = false;
         } break;
         case tipo_o_plantilla_de_tipo_e::digito: {
-            if (digito_lista[nombre_0].radix() != digito_lista[nombre_1].radix()) {
+            if (digito_lista[nombre_0].radix() == digito_lista[nombre_1].radix()) {
                 resultado = (digito_lista[nombre_0] != digito_lista[nombre_1]);
                 comparacion_hecha = true;
             } else {
